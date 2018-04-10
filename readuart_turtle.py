@@ -6,6 +6,20 @@ from serial.tools import list_ports
 psize = 1
 
 #This works on a win 10 and no other devices connected
+"""
+Maybe this code is better...
+port = [
+    port.device
+    for port in serial.tools.list_ports.comports()
+    if 'mbed' in port.description
+    ]
+if port:
+    print("Microbit connected " + str(port))
+    s = serial.Serial(port[0], 115200, timeout=0.5)
+    t = turtle.Turtle()
+else:
+    raise IOError("No microbit connected")
+"""
 port = [port.device for port in serial.tools.list_ports.comports()]
 if port:
     print("Microbit connected " + str(port))
